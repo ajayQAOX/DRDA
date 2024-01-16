@@ -91,6 +91,7 @@ resource "aws_key_pair" "attacker" {
 resource "aws_instance" "receiver" {
   ami           = "${data.aws_ami.amznlinux.id}"
   instance_type = "t2.micro"
+  monitoring = true
   subnet_id = "${aws_subnet.subnet.id}"
   key_name = "${aws_key_pair.attacker.key_name}"
   vpc_security_group_ids = ["${aws_security_group.sg.id}"]
